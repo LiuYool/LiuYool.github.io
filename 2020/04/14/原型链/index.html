@@ -22,19 +22,21 @@
     var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+  <meta name="description" content="原型链本文涉及的知识点 prototype constructor proto本文所分享的内容只是个人的点点学习心得，如有不对，欢迎各位在下方评论区指正。原型对象 只要创建了一个新函数，就会根据一组特定的规则为该函数创建一个 prototype 属性，这个属性指向函数的原型对象。 所有原型对象都会自动获得一个 constructor （构造函数）属性，这个属性包含一个指向 prototype 属性">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http://yoursite.com/2020/04/14/hello-world/index.html">
+<meta property="og:title" content="原型链">
+<meta property="og:url" content="http://yoursite.com/2020/04/14/%E5%8E%9F%E5%9E%8B%E9%93%BE/index.html">
 <meta property="og:site_name" content="Yool的博客">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta property="og:description" content="原型链本文涉及的知识点 prototype constructor proto本文所分享的内容只是个人的点点学习心得，如有不对，欢迎各位在下方评论区指正。原型对象 只要创建了一个新函数，就会根据一组特定的规则为该函数创建一个 prototype 属性，这个属性指向函数的原型对象。 所有原型对象都会自动获得一个 constructor （构造函数）属性，这个属性包含一个指向 prototype 属性">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2020-04-14T02:17:38.186Z">
-<meta property="article:modified_time" content="2020-04-14T11:26:04.703Z">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2020/4/14/1717854bbece59a2?w=819&h=398&f=png&s=20296">
+<meta property="article:published_time" content="2020-04-14T11:25:50.000Z">
+<meta property="article:modified_time" content="2020-04-14T11:27:00.382Z">
 <meta property="article:author" content="Yool">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://user-gold-cdn.xitu.io/2020/4/14/1717854bbece59a2?w=819&h=398&f=png&s=20296">
 
-<link rel="canonical" href="http://yoursite.com/2020/04/14/hello-world/">
+<link rel="canonical" href="http://yoursite.com/2020/04/14/%E5%8E%9F%E5%9E%8B%E9%93%BE/">
 
 
 <script id="page-configurations">
@@ -47,7 +49,7 @@
   };
 </script>
 
-  <title>Hello World | Yool的博客</title>
+  <title>原型链 | Yool的博客</title>
   
 
 
@@ -165,7 +167,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/14/hello-world/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/14/%E5%8E%9F%E5%9E%8B%E9%93%BE/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/user.jpg">
@@ -178,7 +180,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Hello World
+          原型链
         </h1>
 
         <div class="post-meta">
@@ -189,7 +191,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2020-04-14 10:17:38 / 修改时间：19:26:04" itemprop="dateCreated datePublished" datetime="2020-04-14T10:17:38+08:00">2020-04-14</time>
+              <time title="创建时间：2020-04-14 19:25:50 / 修改时间：19:27:00" itemprop="dateCreated datePublished" datetime="2020-04-14T19:25:50+08:00">2020-04-14</time>
             </span>
 
           
@@ -203,19 +205,18 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+        <h3 id="原型链"><a href="#原型链" class="headerlink" title="原型链"></a>原型链</h3><h5 id="本文涉及的知识点"><a href="#本文涉及的知识点" class="headerlink" title="本文涉及的知识点"></a>本文涉及的知识点</h5><ul>
+<li>prototype</li>
+<li>constructor</li>
+<li><em>proto</em><h4 id="本文所分享的内容只是个人的点点学习心得，如有不对，欢迎各位在下方评论区指正。"><a href="#本文所分享的内容只是个人的点点学习心得，如有不对，欢迎各位在下方评论区指正。" class="headerlink" title="本文所分享的内容只是个人的点点学习心得，如有不对，欢迎各位在下方评论区指正。"></a>本文所分享的内容只是个人的点点学习心得，如有不对，欢迎各位在下方评论区指正。</h4><h5 id="原型对象"><a href="#原型对象" class="headerlink" title="原型对象"></a>原型对象</h5></li>
+<li>只要创建了一个新函数，就会根据一组特定的规则为该函数创建一个 prototype 属性，这个属性指向函数的原型对象。</li>
+<li>所有原型对象都会自动获得一个 constructor （构造函数）属性，这个属性包含一个指向 prototype 属性所在函数的指针。</li>
+<li>当调用构造函数创建一个新实例后，该实例的内部将包含一个指针_proto_（内部 属性），指向构造函数的原型对象<h5 id="各自的关系如下图所示："><a href="#各自的关系如下图所示：" class="headerlink" title="各自的关系如下图所示："></a>各自的关系如下图所示：</h5><img src="https://user-gold-cdn.xitu.io/2020/4/14/1717854bbece59a2?w=819&h=398&f=png&s=20296" alt=""><h5 id="原型模式："><a href="#原型模式：" class="headerlink" title="原型模式："></a>原型模式：</h5></li>
+<li>我们创建的每个函数都有一个 prototype（原型）属性，这个属性是一个指针，指向一个对象， 而这个对象的用途是包含可以由特定类型的所有实例共享的属性和方法。使用原型对象的好处是可以 让所有对象实例共享它所包含的属性和方法<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">abc</span>(<span class="params">name,age</span>)</span>&#123;</span><br><span class="line">&#125;</span><br><span class="line"> abc.prototype.sayHi=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">     <span class="built_in">console</span>.log(<span class="string">"你好"</span>)</span><br><span class="line"> &#125;</span><br><span class="line"> abc.prototype.name=<span class="string">'小明'</span>;</span><br><span class="line"> abc.prototype.age=<span class="number">18</span>;</span><br><span class="line"> <span class="keyword">var</span> obj=<span class="keyword">new</span> abc();</span><br><span class="line"> <span class="built_in">console</span>.log(obj.name); <span class="comment">//小明</span></span><br><span class="line"> obj.sayHi(); <span class="comment">//你好</span></span><br><span class="line"> <span class="string">``</span><span class="string">` </span></span><br><span class="line"><span class="string"> - 这里我们将所有属性和方法直接添加到了 abc 的 prototype 属性中，构造函数 变成了空函数。即使如此，也仍然可以通过调用构造函数来创建新对象，而且新对象还会具有相同的属性和方法。</span></span><br><span class="line"><span class="string"> `</span><span class="string">``</span>!</span><br><span class="line">虽然可以通过对象实例访问保存在原型中的值，但却不能通过对象实例重写原型中的值。如果我们 在实例中添加了一个属性，而该属性与实例原型中的一个属性同名，那我们就在实例中创建该属性</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">abc</span>(<span class="params">name,age</span>)</span>&#123;</span><br><span class="line">&#125;</span><br><span class="line"> abc.prototype.sayHi=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">     <span class="built_in">console</span>.log(<span class="string">"你好"</span>)</span><br><span class="line"> &#125;</span><br><span class="line"> abc.prototype.name=<span class="string">'小明'</span>;</span><br><span class="line"> abc.prototype.age=<span class="number">18</span>;</span><br><span class="line"> <span class="keyword">var</span> obj=<span class="keyword">new</span> abc();</span><br><span class="line"> obj.name=<span class="string">"小红"</span>;</span><br><span class="line"> <span class="keyword">var</span> obj2=<span class="keyword">new</span> abc();</span><br><span class="line"> <span class="built_in">console</span>.log(obj.name);<span class="comment">// 小红</span></span><br><span class="line"> <span class="built_in">console</span>.log(obj2.name);<span class="comment">//小明</span></span><br></pre></td></tr></table></figure></li>
+<li>在这个例子中，我们给obj对象自己添加了一个属性name，当要打印obj.name时，会先在obj实例上查找是否存在属性name，如果存在，则不会继续查找下去，否则会去查找原型链上是否有这个属性。而boj2实例上并没有这个属性，所以它会找到prototype上name属性，并且打印出来。<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">delete</span> obj.name;</span><br><span class="line"><span class="built_in">console</span>.log(obj.name);<span class="comment">//小明</span></span><br></pre></td></tr></table></figure></li>
+<li>我们使用 delete 操作符删除了 obj.name，之前它保存的”小红” 值屏蔽了同名的原型属性。把它删除以后，就恢复了对原型中 name 属性的连接。所以打印出来的是小明。</li>
+</ul>
 
     </div>
 
@@ -230,11 +231,11 @@
 
         
     <div class="post-nav">
-      <div class="post-nav-item"></div>
       <div class="post-nav-item">
-    <a href="/2020/04/14/%E5%8E%9F%E5%9E%8B%E9%93%BE/" rel="next" title="原型链">
-      原型链 <i class="fa fa-chevron-right"></i>
+    <a href="/2020/04/14/hello-world/" rel="prev" title="Hello World">
+      <i class="fa fa-chevron-left"></i> Hello World
     </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -293,7 +294,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Quick-Start"><span class="nav-number">1.</span> <span class="nav-text">Quick Start</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Create-a-new-post"><span class="nav-number">1.1.</span> <span class="nav-text">Create a new post</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Run-server"><span class="nav-number">1.2.</span> <span class="nav-text">Run server</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Generate-static-files"><span class="nav-number">1.3.</span> <span class="nav-text">Generate static files</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Deploy-to-remote-sites"><span class="nav-number">1.4.</span> <span class="nav-text">Deploy to remote sites</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#原型链"><span class="nav-number">1.</span> <span class="nav-text">原型链</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#本文涉及的知识点"><span class="nav-number">1.0.1.</span> <span class="nav-text">本文涉及的知识点</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#本文所分享的内容只是个人的点点学习心得，如有不对，欢迎各位在下方评论区指正。"><span class="nav-number">1.1.</span> <span class="nav-text">本文所分享的内容只是个人的点点学习心得，如有不对，欢迎各位在下方评论区指正。</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#原型对象"><span class="nav-number">1.1.1.</span> <span class="nav-text">原型对象</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#各自的关系如下图所示："><span class="nav-number">1.1.2.</span> <span class="nav-text">各自的关系如下图所示：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#原型模式："><span class="nav-number">1.1.3.</span> <span class="nav-text">原型模式：</span></a></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 

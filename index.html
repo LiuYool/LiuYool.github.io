@@ -14,6 +14,8 @@
 
 
 <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
@@ -77,7 +79,7 @@
 <body itemscope itemtype="http://schema.org/WebPage">
   <div class="container use-motion">
     <div class="headband"></div>
-<a href="https://github.com/LiuYool" target="_blank" rel="noopener"><img width="149" height="149" src="https://github.blog/wp-content/uploads/2008/12/forkme_right_gray_6d6d6d.png?resize=149%2C149" class="attachment-full size-full" alt="Fork me on GitHub" data-recalc-dims="1"></a>
+<a href="https://github.com/LiuYool" target="_blank" rel="noopener"><img style="position:fixed;top:0;right:0" width="149" height="149" src="https://github.blog/wp-content/uploads/2008/12/forkme_right_gray_6d6d6d.png?resize=149%2C149" class="attachment-full size-full" alt="Fork me on GitHub" data-recalc-dims="1"></a>
 
     <header class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-container">
@@ -158,6 +160,76 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/14/%E5%8E%9F%E5%9E%8B%E9%93%BE/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/user.jpg">
+      <meta itemprop="name" content="Yool">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Yool的博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/04/14/%E5%8E%9F%E5%9E%8B%E9%93%BE/" class="post-title-link" itemprop="url">原型链</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-04-14 19:25:50 / 修改时间：19:27:00" itemprop="dateCreated datePublished" datetime="2020-04-14T19:25:50+08:00">2020-04-14</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="原型链"><a href="#原型链" class="headerlink" title="原型链"></a>原型链</h3><h5 id="本文涉及的知识点"><a href="#本文涉及的知识点" class="headerlink" title="本文涉及的知识点"></a>本文涉及的知识点</h5><ul>
+<li>prototype</li>
+<li>constructor</li>
+<li><em>proto</em><h4 id="本文所分享的内容只是个人的点点学习心得，如有不对，欢迎各位在下方评论区指正。"><a href="#本文所分享的内容只是个人的点点学习心得，如有不对，欢迎各位在下方评论区指正。" class="headerlink" title="本文所分享的内容只是个人的点点学习心得，如有不对，欢迎各位在下方评论区指正。"></a>本文所分享的内容只是个人的点点学习心得，如有不对，欢迎各位在下方评论区指正。</h4><h5 id="原型对象"><a href="#原型对象" class="headerlink" title="原型对象"></a>原型对象</h5></li>
+<li>只要创建了一个新函数，就会根据一组特定的规则为该函数创建一个 prototype 属性，这个属性指向函数的原型对象。</li>
+<li>所有原型对象都会自动获得一个 constructor （构造函数）属性，这个属性包含一个指向 prototype 属性所在函数的指针。</li>
+<li>当调用构造函数创建一个新实例后，该实例的内部将包含一个指针_proto_（内部 属性），指向构造函数的原型对象<h5 id="各自的关系如下图所示："><a href="#各自的关系如下图所示：" class="headerlink" title="各自的关系如下图所示："></a>各自的关系如下图所示：</h5><img src="https://user-gold-cdn.xitu.io/2020/4/14/1717854bbece59a2?w=819&h=398&f=png&s=20296" alt=""><h5 id="原型模式："><a href="#原型模式：" class="headerlink" title="原型模式："></a>原型模式：</h5></li>
+<li>我们创建的每个函数都有一个 prototype（原型）属性，这个属性是一个指针，指向一个对象， 而这个对象的用途是包含可以由特定类型的所有实例共享的属性和方法。使用原型对象的好处是可以 让所有对象实例共享它所包含的属性和方法<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">abc</span>(<span class="params">name,age</span>)</span>&#123;</span><br><span class="line">&#125;</span><br><span class="line"> abc.prototype.sayHi=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">     <span class="built_in">console</span>.log(<span class="string">"你好"</span>)</span><br><span class="line"> &#125;</span><br><span class="line"> abc.prototype.name=<span class="string">'小明'</span>;</span><br><span class="line"> abc.prototype.age=<span class="number">18</span>;</span><br><span class="line"> <span class="keyword">var</span> obj=<span class="keyword">new</span> abc();</span><br><span class="line"> <span class="built_in">console</span>.log(obj.name); <span class="comment">//小明</span></span><br><span class="line"> obj.sayHi(); <span class="comment">//你好</span></span><br><span class="line"> <span class="string">``</span><span class="string">` </span></span><br><span class="line"><span class="string"> - 这里我们将所有属性和方法直接添加到了 abc 的 prototype 属性中，构造函数 变成了空函数。即使如此，也仍然可以通过调用构造函数来创建新对象，而且新对象还会具有相同的属性和方法。</span></span><br><span class="line"><span class="string"> `</span><span class="string">``</span>!</span><br><span class="line">虽然可以通过对象实例访问保存在原型中的值，但却不能通过对象实例重写原型中的值。如果我们 在实例中添加了一个属性，而该属性与实例原型中的一个属性同名，那我们就在实例中创建该属性</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">abc</span>(<span class="params">name,age</span>)</span>&#123;</span><br><span class="line">&#125;</span><br><span class="line"> abc.prototype.sayHi=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">     <span class="built_in">console</span>.log(<span class="string">"你好"</span>)</span><br><span class="line"> &#125;</span><br><span class="line"> abc.prototype.name=<span class="string">'小明'</span>;</span><br><span class="line"> abc.prototype.age=<span class="number">18</span>;</span><br><span class="line"> <span class="keyword">var</span> obj=<span class="keyword">new</span> abc();</span><br><span class="line"> obj.name=<span class="string">"小红"</span>;</span><br><span class="line"> <span class="keyword">var</span> obj2=<span class="keyword">new</span> abc();</span><br><span class="line"> <span class="built_in">console</span>.log(obj.name);<span class="comment">// 小红</span></span><br><span class="line"> <span class="built_in">console</span>.log(obj2.name);<span class="comment">//小明</span></span><br></pre></td></tr></table></figure></li>
+<li>在这个例子中，我们给obj对象自己添加了一个属性name，当要打印obj.name时，会先在obj实例上查找是否存在属性name，如果存在，则不会继续查找下去，否则会去查找原型链上是否有这个属性。而boj2实例上并没有这个属性，所以它会找到prototype上name属性，并且打印出来。<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">delete</span> obj.name;</span><br><span class="line"><span class="built_in">console</span>.log(obj.name);<span class="comment">//小明</span></span><br></pre></td></tr></table></figure></li>
+<li>我们使用 delete 操作符删除了 obj.name，之前它保存的”小红” 值屏蔽了同名的原型属性。把它删除以后，就恢复了对原型中 name 属性的连接。所以打印出来的是小明。</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/14/hello-world/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -181,8 +253,9 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
+              
 
-              <time title="创建时间：2020-04-14 10:17:38" itemprop="dateCreated datePublished" datetime="2020-04-14T10:17:38+08:00">2020-04-14</time>
+              <time title="创建时间：2020-04-14 10:17:38 / 修改时间：19:26:04" itemprop="dateCreated datePublished" datetime="2020-04-14T10:17:38+08:00">2020-04-14</time>
             </span>
 
           
@@ -292,7 +365,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">1</span>
+          <span class="site-state-item-count">2</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -331,6 +404,11 @@
   <span class="author" itemprop="copyrightHolder">Yool</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+ <div class="theme-info">
+    <div class="powered-by"></div>
+    <span class="post-count">博客全站共781字</span>
   </div>
 
 <div class="powered-by"> <i class="fa fa-user-md"></i> <span id="busuanzi_container_site_uv"> 本站总访客数:<span id="busuanzi_value_site_uv"></span>&nbsp;&nbsp;| </span> <span id="busuanzi_container_site_pv"> &nbsp;本站总访问量<span id="busuanzi_value_site_pv"></span>次 </span> </div> </div>
