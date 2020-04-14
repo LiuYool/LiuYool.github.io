@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Yool的博客</title>
+  
+  <subtitle>小小笔记</subtitle>
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://yoursite.com/"/>
+  <updated>2020-04-14T13:37:10.631Z</updated>
+  <id>http://yoursite.com/</id>
+  
+  <author>
+    <name>Yool</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>原型链</title>
+    <link href="http://yoursite.com/2020/04/14/%E5%8E%9F%E5%9E%8B%E9%93%BE/"/>
+    <id>http://yoursite.com/2020/04/14/%E5%8E%9F%E5%9E%8B%E9%93%BE/</id>
+    <published>2020-04-14T11:25:50.000Z</published>
+    <updated>2020-04-14T13:37:10.631Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="原型链"><a href="#原型链" class="headerlink" title="原型链"></a>原型链</h3><h5 id="本文涉及的知识点"><a href="#本文涉及的知识点" class="headerlink" title="本文涉及的知识点"></a>本文涉及的知识点</h5><ul><li>prototype</li><li>constructor</li><li><em>proto</em><a id="more"></a></li><li>本文所分享的内容只是个人的点点学习心得，如有不对，欢迎各位在下方评论区指正。<h5 id="原型对象"><a href="#原型对象" class="headerlink" title="原型对象"></a>原型对象</h5></li><li>只要创建了一个新函数，就会根据一组特定的规则为该函数创建一个 prototype 属性，这个属性指向函数的原型对象。</li><li>所有原型对象都会自动获得一个 constructor （构造函数）属性，这个属性包含一个指向 prototype 属性所在函数的指针。</li><li>当调用构造函数创建一个新实例后，该实例的内部将包含一个指针_proto_（内部 属性），指向构造函数的原型对象<h5 id="各自的关系如下图所示："><a href="#各自的关系如下图所示：" class="headerlink" title="各自的关系如下图所示："></a>各自的关系如下图所示：</h5><img src="https://user-gold-cdn.xitu.io/2020/4/14/1717854bbece59a2?w=819&h=398&f=png&s=20296" alt=""><h5 id="原型模式："><a href="#原型模式：" class="headerlink" title="原型模式："></a>原型模式：</h5></li><li>我们创建的每个函数都有一个 prototype（原型）属性，这个属性是一个指针，指向一个对象， 而这个对象的用途是包含可以由特定类型的所有实例共享的属性和方法。使用原型对象的好处是可以 让所有对象实例共享它所包含的属性和方法<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">abc</span>(<span class="params">name,age</span>)</span>&#123;</span><br><span class="line">&#125;</span><br><span class="line"> abc.prototype.sayHi=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">     <span class="built_in">console</span>.log(<span class="string">"你好"</span>)</span><br><span class="line"> &#125;</span><br><span class="line"> abc.prototype.name=<span class="string">'小明'</span>;</span><br><span class="line"> abc.prototype.age=<span class="number">18</span>;</span><br><span class="line"> <span class="keyword">var</span> obj=<span class="keyword">new</span> abc();</span><br><span class="line"> <span class="built_in">console</span>.log(obj.name); <span class="comment">//小明</span></span><br><span class="line"> obj.sayHi(); <span class="comment">//你好</span></span><br><span class="line"> <span class="string">``</span><span class="string">` </span></span><br><span class="line"><span class="string">- 这里我们将所有属性和方法直接添加到了 abc 的 prototype 属性中，构造函数 变成了空函数。即使如此，也仍然可以通过调用构造函数来创建新对象，而且新对象还会具有相同的属性和方法。</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">- 虽然可以通过对象实例访问保存在原型中的值，但却不能通过对象实例重写原型中的值。如果我们 在实例中添加了一个属性，而该属性与实例原型中的一个属性同名，那我们就在实例中创建该属性</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">`</span><span class="string">``</span> javascript</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">abc</span>(<span class="params">name,age</span>)</span>&#123;</span><br><span class="line">&#125;</span><br><span class="line"> abc.prototype.sayHi=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">     <span class="built_in">console</span>.log(<span class="string">"你好"</span>)</span><br><span class="line"> &#125;</span><br><span class="line"> abc.prototype.name=<span class="string">'小明'</span>;</span><br><span class="line"> abc.prototype.age=<span class="number">18</span>;</span><br><span class="line"> <span class="keyword">var</span> obj=<span class="keyword">new</span> abc();</span><br><span class="line"> obj.name=<span class="string">"小红"</span>;</span><br><span class="line"> <span class="keyword">var</span> obj2=<span class="keyword">new</span> abc();</span><br><span class="line"> <span class="built_in">console</span>.log(obj.name);<span class="comment">// 小红</span></span><br><span class="line"> <span class="built_in">console</span>.log(obj2.name);<span class="comment">//小明</span></span><br></pre></td></tr></table></figure></li><li>在这个例子中，我们给obj对象自己添加了一个属性name，当要打印obj.name时，会先在obj实例上查找是否存在属性name，如果存在，则不会继续查找下去，否则会去查找原型链上是否有这个属性。而boj2实例上并没有这个属性，所以它会找到prototype上name属性，并且打印出来。<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">delete</span> obj.name;</span><br><span class="line"><span class="built_in">console</span>.log(obj.name);<span class="comment">//小明</span></span><br></pre></td></tr></table></figure></li><li>我们使用 delete 操作符删除了 obj.name，之前它保存的”小红” 值屏蔽了同名的原型属性。把它删除以后，就恢复了对原型中 name 属性的连接。所以打印出来的是小明。</li></ul>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;原型链&quot;&gt;&lt;a href=&quot;#原型链&quot; class=&quot;headerlink&quot; title=&quot;原型链&quot;&gt;&lt;/a&gt;原型链&lt;/h3&gt;&lt;h5 id=&quot;本文涉及的知识点&quot;&gt;&lt;a href=&quot;#本文涉及的知识点&quot; class=&quot;headerlink&quot; title=&quot;本文涉及的知识点&quot;&gt;&lt;/a&gt;本文涉及的知识点&lt;/h5&gt;&lt;ul&gt;
+&lt;li&gt;prototype&lt;/li&gt;
+&lt;li&gt;constructor&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;proto&lt;/em&gt;
+    
+    </summary>
+    
+    
+      <category term="Javascript" scheme="http://yoursite.com/categories/Javascript/"/>
+    
+      <category term="config" scheme="http://yoursite.com/categories/Javascript/config/"/>
+    
+      <category term="tags" scheme="http://yoursite.com/categories/Javascript/config/tags/"/>
+    
+    
+      <category term="Javascript" scheme="http://yoursite.com/tags/Javascript/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Hello World</title>
+    <link href="http://yoursite.com/2020/04/14/hello-world/"/>
+    <id>http://yoursite.com/2020/04/14/hello-world/</id>
+    <published>2020-04-14T02:17:38.186Z</published>
+    <updated>2020-04-14T13:01:31.648Z</updated>
+    
+    <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure><a id="more"></a><p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.io/docs/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;documentation&lt;/a&gt; for more info. If you get any problems when using Hexo, you can find the answer in &lt;a href=&quot;https://hexo.io/docs/troubleshooting.html&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;troubleshooting&lt;/a&gt; or you can ask me on &lt;a href=&quot;https://github.com/hexojs/hexo/issues&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;GitHub&lt;/a&gt;.&lt;/p&gt;
+&lt;h2 id=&quot;Quick-Start&quot;&gt;&lt;a href=&quot;#Quick-Start&quot; class=&quot;headerlink&quot; title=&quot;Quick Start&quot;&gt;&lt;/a&gt;Quick Start&lt;/h2&gt;&lt;h3 id=&quot;Create-a-new-post&quot;&gt;&lt;a href=&quot;#Create-a-new-post&quot; class=&quot;headerlink&quot; title=&quot;Create a new post&quot;&gt;&lt;/a&gt;Create a new post&lt;/h3&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;$ hexo new &lt;span class=&quot;string&quot;&gt;&quot;My New Post&quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+
+&lt;p&gt;More info: &lt;a href=&quot;https://hexo.io/docs/writing.html&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Writing&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&quot;Run-server&quot;&gt;&lt;a href=&quot;#Run-server&quot; class=&quot;headerlink&quot; title=&quot;Run server&quot;&gt;&lt;/a&gt;Run server&lt;/h3&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;$ hexo server&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+
+&lt;p&gt;More info: &lt;a href=&quot;https://hexo.io/docs/server.html&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Server&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&quot;Generate-static-files&quot;&gt;&lt;a href=&quot;#Generate-static-files&quot; class=&quot;headerlink&quot; title=&quot;Generate static files&quot;&gt;&lt;/a&gt;Generate static files&lt;/h3&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;$ hexo generate&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+</feed>
