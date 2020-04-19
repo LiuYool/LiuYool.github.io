@@ -32,22 +32,30 @@
     var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="什么是浏览器缓存？ 浏览器缓存是指浏览器在本地磁盘对用户最近请求过的文档进行存储，当访问者再次访问同一页面时，浏览器就可以直接从本地磁盘加载文档。浏览器缓存的好处？ 加快客户端加载网页的速度 减少服务器请求 减少重复数据请求，避免通过网络再次加载资源，节省流量">
+  <meta name="description" content="Interator 遍历器（Iterator）就是这样一种机制。它是一种接口，为各种不同的数据结构提供统一的访问机制。任何数据结构只要部署 Iterator 接口，就可以完成遍历操作（即依次处理该数据结构的所有成员）三个作用   为数据结构提供一个统一的接口 使得数据结构的成员能够按某种次序排列 供for…of消费">
 <meta property="og:type" content="article">
-<meta property="og:title" content="强缓存与协商缓存">
-<meta property="og:url" content="http://yoursite.com/2020/04/15/%E5%BC%BA%E7%BC%93%E5%AD%98%E4%B8%8E%E5%8D%8F%E5%95%86%E7%BC%93%E5%AD%98/index.html">
+<meta property="og:title" content="Interator">
+<meta property="og:url" content="http://yoursite.com/2020/04/19/Interator/index.html">
 <meta property="og:site_name" content="Yool的博客">
-<meta property="og:description" content="什么是浏览器缓存？ 浏览器缓存是指浏览器在本地磁盘对用户最近请求过的文档进行存储，当访问者再次访问同一页面时，浏览器就可以直接从本地磁盘加载文档。浏览器缓存的好处？ 加快客户端加载网页的速度 减少服务器请求 减少重复数据请求，避免通过网络再次加载资源，节省流量">
+<meta property="og:description" content="Interator 遍历器（Iterator）就是这样一种机制。它是一种接口，为各种不同的数据结构提供统一的访问机制。任何数据结构只要部署 Iterator 接口，就可以完成遍历操作（即依次处理该数据结构的所有成员）三个作用   为数据结构提供一个统一的接口 使得数据结构的成员能够按某种次序排列 供for…of消费">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://user-gold-cdn.xitu.io/2020/4/15/1717b9dcbeacbdc7?w=823&h=774&f=png&s=123505">
-<meta property="article:published_time" content="2020-04-15T02:17:30.000Z">
-<meta property="article:modified_time" content="2020-04-15T02:18:53.550Z">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2020/4/19/1719241061b6f9fa?w=806&h=277&f=png&s=141122">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2020/4/19/171924293bebf769?w=725&h=446&f=png&s=70432">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2020/4/19/171925014dfd254f?w=404&h=145&f=png&s=5658">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2020/4/19/171924c961543f9d?w=319&h=70&f=png&s=4260">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2020/4/19/1719253ae6285939?w=370&h=96&f=png&s=5277">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2020/4/19/171925e0ba0bc807?w=390&h=130&f=png&s=6391">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2020/4/19/171925fc020039c4?w=357&h=154&f=png&s=5824">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2020/4/19/1719297b7f0abfb8?w=400&h=199&f=png&s=13818">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2020/4/19/171929cf99fddb9a?w=430&h=212&f=png&s=10838">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2020/4/19/171929f50a7511b2?w=475&h=308&f=png&s=17520">
+<meta property="article:published_time" content="2020-04-19T13:31:03.000Z">
+<meta property="article:modified_time" content="2020-04-19T13:36:09.625Z">
 <meta property="article:author" content="Yool">
-<meta property="article:tag" content="javascript">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://user-gold-cdn.xitu.io/2020/4/15/1717b9dcbeacbdc7?w=823&h=774&f=png&s=123505">
+<meta name="twitter:image" content="https://user-gold-cdn.xitu.io/2020/4/19/1719241061b6f9fa?w=806&h=277&f=png&s=141122">
 
-<link rel="canonical" href="http://yoursite.com/2020/04/15/%E5%BC%BA%E7%BC%93%E5%AD%98%E4%B8%8E%E5%8D%8F%E5%95%86%E7%BC%93%E5%AD%98/">
+<link rel="canonical" href="http://yoursite.com/2020/04/19/Interator/">
 
 
 <script id="page-configurations">
@@ -60,7 +68,7 @@
   };
 </script>
 
-  <title>强缓存与协商缓存 | Yool的博客</title>
+  <title>Interator | Yool的博客</title>
   
 
 
@@ -179,7 +187,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/15/%E5%BC%BA%E7%BC%93%E5%AD%98%E4%B8%8E%E5%8D%8F%E5%95%86%E7%BC%93%E5%AD%98/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/19/Interator/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/user.jpg">
@@ -192,7 +200,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          强缓存与协商缓存
+          Interator
         </h1>
 
         <div class="post-meta">
@@ -203,16 +211,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2020-04-15 10:17:30 / 修改时间：10:18:53" itemprop="dateCreated datePublished" datetime="2020-04-15T10:17:30+08:00">2020-04-15</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Javascript/" itemprop="url" rel="index"><span itemprop="name">Javascript</span></a>
-                </span>
+              <time title="创建时间：2020-04-19 21:31:03 / 修改时间：21:36:09" itemprop="dateCreated datePublished" datetime="2020-04-19T21:31:03+08:00">2020-04-19</time>
             </span>
 
           
@@ -226,28 +225,62 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h5 id="什么是浏览器缓存？"><a href="#什么是浏览器缓存？" class="headerlink" title="什么是浏览器缓存？"></a>什么是浏览器缓存？</h5><ul>
-<li>浏览器缓存是指浏览器在本地磁盘对用户最近请求过的文档进行存储，当访问者再次访问同一页面时，浏览器就可以直接从本地磁盘加载文档。<h5 id="浏览器缓存的好处？"><a href="#浏览器缓存的好处？" class="headerlink" title="浏览器缓存的好处？"></a>浏览器缓存的好处？</h5></li>
-<li>加快客户端加载网页的速度</li>
-<li>减少服务器请求</li>
-<li>减少重复数据请求，避免通过网络再次加载资源，节省流量<a id="more"></a>
-<h5 id="浏览器缓存"><a href="#浏览器缓存" class="headerlink" title="浏览器缓存"></a>浏览器缓存</h5></li>
-<li>如果浏览器命中强缓存，则不需要给服务器发请求；而协商缓存最终由服务器来决定是否使用缓存，即客户端与服务器之间存在一次通信。<h5 id="强缓存"><a href="#强缓存" class="headerlink" title="强缓存"></a>强缓存</h5></li>
-<li>在这个阶段中，不会发送http请求，而是会检查服务器返回的信息Expires和cache-control</li>
-<li>Expires记录的是过期时间，告诉浏览器在这个时间之前都可以直接从缓存中取数据，而不用发送请求。但是会存在一个问题，就是服务器的时间和浏览器的时间可能并不一致，那服务器返回的这个过期时间可能就是不准确的。</li>
-<li>cache-control,它和Expires不一样，它记录的不是缓存数据的过期时间，而是记录一个过期的时长，即存在一个字段max-age<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Cache-Control:max-age=<span class="number">3600</span></span><br></pre></td></tr></table></figure></li>
-<li>表示在第一次请求数据之后，可以在这之后的一个小时内可以直接从缓存中取数据，而不用发送请求，过了这个时间后，即需要重新发送请求。</li>
-<li>此外还存在几个别的字段:</br>private： 这种情况就是只有浏览器能缓存了，中间的代理服务器不能缓存。</br><br>no-cache: 跳过当前的强缓存，发送HTTP请求，即直接进入协商缓存阶段。</br><br>no-store：非常粗暴，不进行任何形式的缓存。</br><br>s-maxage：这和max-age长得比较像，但是区别在于s-maxage是针对代理服务器的缓存时间<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Cache-Control与Expires可以在服务端配置同时启用，同时启用的时候Cache-Control优先级高</span><br></pre></td></tr></table></figure>
-<h5 id="协商缓存"><a href="#协商缓存" class="headerlink" title="协商缓存"></a>协商缓存</h5></li>
-<li>当强缓存失效之后，就会采取协商缓存，是由服务器来确定缓存资源是否可用。</li>
-<li>Last-Modify/If-Modify-Since</br>Last-Modified是最后修改时间。在浏览器第一次给服务器发送请求后，服务器会在响应头中加上这个字段。</br><br>If-Modify-Since：当浏览器再次请求该资源时，request的请求头中会包含If-Modify-Since，该值为缓存之前返回的Last-Modify。服务器收到If-Modify-Since后，根据资源的最后修改时间判断是否命中缓存。如果命中，会返回304,并且不会返回资源。</li>
-<li>ETag/If-None-Match</br><br>ETag 是服务器根据当前文件的内容，给文件生成的唯一标识，只要里面的内容有改动，这个值就会变服务器根据浏览器上送的If-None-Match值来判断是否命中缓存.<h5 id="为什么还需要ETag？"><a href="#为什么还需要ETag？" class="headerlink" title="为什么还需要ETag？"></a>为什么还需要ETag？</h5></li>
-<li>如果我们某些文件修改的特别频繁，1s内修改了许多次，那么这个时候Last-Modify并没有提醒出修改了。</li>
-<li>某些服务器不能精确的得到文件的最后修改时间。</li>
-<li>编辑了资源文件，但是文件内容并没有更改，这样也会造成缓存失效。</li>
+        <h4 id="Interator"><a href="#Interator" class="headerlink" title="Interator"></a>Interator</h4><ul>
+<li>遍历器（Iterator）就是这样一种机制。它是一种接口，为各种不同的数据结构提供统一的访问机制。任何数据结构只要部署 Iterator 接口，就可以完成遍历操作（即依次处理该数据结构的所有成员）<h5 id="三个作用"><a href="#三个作用" class="headerlink" title="三个作用"></a>三个作用</h5></li>
 </ul>
-<p><img src="https://user-gold-cdn.xitu.io/2020/4/15/1717b9dcbeacbdc7?w=823&h=774&f=png&s=123505" alt=""></p>
-<h5 id="参考文献："><a href="#参考文献：" class="headerlink" title="参考文献："></a>参考文献：</h5><p>掘金-神三元（浏览器灵魂之列）,</br><br>链接:<a href="http://caibaojian.com/browser-cache.html" target="_blank" rel="noopener">http://caibaojian.com/browser-cache.html</a></p>
+<ol>
+<li>为数据结构提供一个统一的接口</li>
+<li>使得数据结构的成员能够按某种次序排列</li>
+<li>供for…of消费<a id="more"></a></li>
+</ol>
+<ul>
+<li>内部部署了一个[Symbol.iterator]属性，它是一个函数，执行后会返回iterator对象（也叫迭代器对象），而生成iterator对象[Symbol.iterator]属性叫iterator接口,有这个接口的数据结构即被视为可迭代的<h5 id="默认部署iterator接口的数据结构"><a href="#默认部署iterator接口的数据结构" class="headerlink" title="默认部署iterator接口的数据结构"></a>默认部署iterator接口的数据结构</h5></li>
+<li>Array</li>
+<li>Map</li>
+<li>set</li>
+<li>NodeList</li>
+<li>String</li>
+<li>TypedArray（类数组）</li>
+<li>函数的 arguments 对象<h5 id="调用过程"><a href="#调用过程" class="headerlink" title="调用过程"></a>调用过程</h5></li>
+</ul>
+<ol>
+<li>创建一个指针对象，指向当前数据结构的起始位置。也就是说，遍历器对象本质上，就是一个指针对象。</li>
+<li>第一次调用指针对象的next方法，可以将指针指向数据结构的第一个成员。</li>
+<li>第二次调用指针对象的next方法，指针就指向数据结构的第二个成员。</li>
+<li>不断调用指针对象的next方法，直到它指向数据结构的结束位置。</li>
+</ol>
+<p><img src="https://user-gold-cdn.xitu.io/2020/4/19/1719241061b6f9fa?w=806&h=277&f=png&s=141122" alt=""></p>
+<h5 id="模拟实现一个Interator"><a href="#模拟实现一个Interator" class="headerlink" title="模拟实现一个Interator"></a>模拟实现一个Interator</h5><p><img src="https://user-gold-cdn.xitu.io/2020/4/19/171924293bebf769?w=725&h=446&f=png&s=70432" alt=""></p>
+<h5 id="遍历器对象的-return-，throw"><a href="#遍历器对象的-return-，throw" class="headerlink" title="遍历器对象的 return()，throw()"></a>遍历器对象的 return()，throw()</h5><ul>
+<li>遍历器对象除了具有next方法，还可以具有return方法和throw方法。如果你自己写遍历器对象生成函数，那么next方法是必须部署的，return方法和throw方法是否部署是可选的。</li>
+<li>return方法必须返回一个对象<h4 id="Interator的应用"><a href="#Interator的应用" class="headerlink" title="Interator的应用"></a>Interator的应用</h4><h5 id="解构赋值"><a href="#解构赋值" class="headerlink" title="解构赋值"></a>解构赋值</h5><img src="https://user-gold-cdn.xitu.io/2020/4/19/171925014dfd254f?w=404&h=145&f=png&s=5658" alt=""></li>
+<li>数组解构的原理其实是消耗数组的迭代器，把生成对象的value属性的值赋值给对应的变量</li>
+</ul>
+<p><img src="https://user-gold-cdn.xitu.io/2020/4/19/171924c961543f9d?w=319&h=70&f=png&s=4260" alt=""></p>
+<ul>
+<li>如果等号的右边不是数组（或者严格地说，不是可遍历的结构），那么将会报错<h5 id="扩展运算符"><a href="#扩展运算符" class="headerlink" title="扩展运算符"></a>扩展运算符</h5><img src="https://user-gold-cdn.xitu.io/2020/4/19/1719253ae6285939?w=370&h=96&f=png&s=5277" alt=""><h4 id="for-of"><a href="#for-of" class="headerlink" title="for of"></a>for of</h4></li>
+<li>for … of是作为ES6新增的遍历方式,允许遍历一个含有iterator接口的数据结构并且返回各项的值<br><img src="https://user-gold-cdn.xitu.io/2020/4/19/171925e0ba0bc807?w=390&h=130&f=png&s=6391" alt=""></li>
+<li>for … of只能用在可迭代对象上,获取的是迭代器返回的value值,for … in 可以获取所有对象的键名</li>
+</ul>
+<p><img src="https://user-gold-cdn.xitu.io/2020/4/19/171925fc020039c4?w=357&h=154&f=png&s=5824" alt=""></p>
+<ul>
+<li>for … in会遍历对象的整个原型链,性能非常差不推荐使用,而for … of只遍历当前对象不会遍历它的原型链</li>
+<li>一个对象如果要具备可被for…of循环调用的 Iterator接口，就必须在Symbol.iterator的属性上部署遍历器生成方法<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">并不是所有类似数组的对象都具有 Iterator 接口，一个简便的解决方法，就是使用Array.from方法将其转为数组</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<p><img src="https://user-gold-cdn.xitu.io/2020/4/19/1719297b7f0abfb8?w=400&h=199&f=png&s=13818" alt=""></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">对于普通的对象，for...of结构不能直接使用，会报错，必须部署了 Iterator 接口后才能使用。但是，这样情况下，for...in循环依然可以用来遍历键名</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://user-gold-cdn.xitu.io/2020/4/19/171929cf99fddb9a?w=430&h=212&f=png&s=10838" alt=""></p>
+<ul>
+<li>可以看见对于普通对象的遍历，用for in 仍然可以访问对象的键名</li>
+</ul>
+<p><img src="https://user-gold-cdn.xitu.io/2020/4/19/171929f50a7511b2?w=475&h=308&f=png&s=17520" alt=""></p>
+<ul>
+<li>而用for of 方法则会出错，因为它没有Interator接口<h4 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h4></li>
+<li>阮一峰的《ES6入门》</li>
+</ul>
 
     </div>
 
@@ -256,9 +289,6 @@
     
 
       <footer class="post-footer">
-          <div class="post-tags">
-              <a href="/tags/javascript/" rel="tag"># javascript</a>
-          </div>
 
         
 
@@ -266,13 +296,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2020/04/14/%E5%B0%8F%E5%B0%8F%E6%9D%82%E6%80%9D/" rel="prev" title="小小杂思">
-      <i class="fa fa-chevron-left"></i> 小小杂思
+    <a href="/2020/04/18/%E6%B5%85%E6%8B%B7%E8%B4%9D%E5%92%8C%E6%B7%B1%E6%8B%B7%E8%B4%9D/" rel="prev" title="浅拷贝和深拷贝">
+      <i class="fa fa-chevron-left"></i> 浅拷贝和深拷贝
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2020/04/16/%E5%BC%82%E6%AD%A5%E5%8F%91%E5%B1%95/" rel="next" title="异步发展">
-      异步发展 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -331,7 +358,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#什么是浏览器缓存？"><span class="nav-number">1.</span> <span class="nav-text">什么是浏览器缓存？</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#浏览器缓存的好处？"><span class="nav-number">2.</span> <span class="nav-text">浏览器缓存的好处？</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#浏览器缓存"><span class="nav-number">3.</span> <span class="nav-text">浏览器缓存</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#强缓存"><span class="nav-number">4.</span> <span class="nav-text">强缓存</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#协商缓存"><span class="nav-number">5.</span> <span class="nav-text">协商缓存</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#为什么还需要ETag？"><span class="nav-number">6.</span> <span class="nav-text">为什么还需要ETag？</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#参考文献："><span class="nav-number">7.</span> <span class="nav-text">参考文献：</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#Interator"><span class="nav-number">1.</span> <span class="nav-text">Interator</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#三个作用"><span class="nav-number">1.1.</span> <span class="nav-text">三个作用</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#默认部署iterator接口的数据结构"><span class="nav-number">1.2.</span> <span class="nav-text">默认部署iterator接口的数据结构</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#调用过程"><span class="nav-number">1.3.</span> <span class="nav-text">调用过程</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#模拟实现一个Interator"><span class="nav-number">1.4.</span> <span class="nav-text">模拟实现一个Interator</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#遍历器对象的-return-，throw"><span class="nav-number">1.5.</span> <span class="nav-text">遍历器对象的 return()，throw()</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Interator的应用"><span class="nav-number">2.</span> <span class="nav-text">Interator的应用</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#解构赋值"><span class="nav-number">2.1.</span> <span class="nav-text">解构赋值</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#扩展运算符"><span class="nav-number">2.2.</span> <span class="nav-text">扩展运算符</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#for-of"><span class="nav-number">3.</span> <span class="nav-text">for of</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#参考文章"><span class="nav-number">4.</span> <span class="nav-text">参考文章</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
