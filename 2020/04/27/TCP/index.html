@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入密码') !== ''){
+                alert('密码错误');
+                history.back();
+            }
+        }
+    })();
+</script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="TCP和UDP的区别1TCP&#x2F;IP 是互联网相关的各类协议族的总称，比如：TCP，UDP，IP，FTP，HTTP，ICMP，SMTP 等都属于 TCP&#x2F;IP 族内的协议">
+<meta property="og:type" content="article">
+<meta property="og:title" content="TCP">
+<meta property="og:url" content="http://yoursite.com/2020/04/27/TCP/index.html">
+<meta property="og:site_name" content="Yool的博客">
+<meta property="og:description" content="TCP和UDP的区别1TCP&#x2F;IP 是互联网相关的各类协议族的总称，比如：TCP，UDP，IP，FTP，HTTP，ICMP，SMTP 等都属于 TCP&#x2F;IP 族内的协议">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2020/4/27/171bbe500833b2d7?w=881&h=365&f=png&s=84794">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2020/4/27/171bbeec18996aa0?w=706&h=522&f=png&s=269196">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2020/4/27/171bbfa1503a6c61?w=876&h=252&f=png&s=51359">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2020/4/27/171bbef84e659c1c?w=838&h=642&f=png&s=155538">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2020/4/27/171bc03f96832ddd?w=860&h=605&f=png&s=197271">
+<meta property="article:published_time" content="2020-04-27T14:57:46.000Z">
+<meta property="article:modified_time" content="2020-04-27T15:04:49.430Z">
+<meta property="article:author" content="Yool">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://user-gold-cdn.xitu.io/2020/4/27/171bbe500833b2d7?w=881&h=365&f=png&s=84794">
+
+<link rel="canonical" href="http://yoursite.com/2020/04/27/TCP/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>TCP | Yool的博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="Yool的博客" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+<a href="https://github.com/LiuYool" target="_blank" rel="noopener"><img style="position:fixed;top:0;right:0" width="149" height="149" src="https://github.blog/wp-content/uploads/2008/12/forkme_right_gray_6d6d6d.png?resize=149%2C149" class="attachment-full size-full" alt="Fork me on GitHub" data-recalc-dims="1"></a>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Yool的博客</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">小小笔记</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/27/TCP/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/user.jpg">
+      <meta itemprop="name" content="Yool">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Yool的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          TCP
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-04-27 22:57:46 / 修改时间：23:04:49" itemprop="dateCreated datePublished" datetime="2020-04-27T22:57:46+08:00">2020-04-27</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/TCP/" itemprop="url" rel="index"><span itemprop="name">TCP</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h4 id="TCP和UDP的区别"><a href="#TCP和UDP的区别" class="headerlink" title="TCP和UDP的区别"></a>TCP和UDP的区别</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">TCP&#x2F;IP 是互联网相关的各类协议族的总称，比如：TCP，UDP，IP，FTP，HTTP，ICMP，SMTP 等都属于 TCP&#x2F;IP 族内的协议</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<h4 id="七层网络模型"><a href="#七层网络模型" class="headerlink" title="七层网络模型"></a>七层网络模型</h4><p><img src="https://user-gold-cdn.xitu.io/2020/4/27/171bbe500833b2d7?w=881&h=365&f=png&s=84794" alt=""></p>
+<h5 id="TCP"><a href="#TCP" class="headerlink" title="TCP"></a>TCP</h5><ul>
+<li>TCP 协议是面向有连接的协议，也就是说在使用 TCP 协议传输数据之前一定要在发送方和接收方之间建立连接。</li>
+<li>建立 TCP 连接后，由于有数据重传、流量控制等功能，TCP 协议能够正确处理丢包问题，保证接收方能够收到数据。<br><img src="https://user-gold-cdn.xitu.io/2020/4/27/171bbeec18996aa0?w=706&h=522&f=png&s=269196" alt=""><h5 id="UDP"><a href="#UDP" class="headerlink" title="UDP"></a>UDP</h5></li>
+<li>UDP 协议是面向无连接的协议，它只会把数据传递给接收端，但是不会关注接收端是否真的收到了数据。</li>
+<li>只是数据报文的搬运工，不会对数据报文进行任何拆分和拼接操作。</li>
+<li>UDP是面向报文的。发送方的UDP对应用程序交下来的报文，在添加首部后就向下交付IP层。UDP对应用层交下来的报文，既不合并，也不拆分，而是保留这些报文的边界。</li>
+<li><img src="https://user-gold-cdn.xitu.io/2020/4/27/171bbfa1503a6c61?w=876&h=252&f=png&s=51359" alt=""><h4 id="TCP的三次握手"><a href="#TCP的三次握手" class="headerlink" title="TCP的三次握手"></a>TCP的三次握手</h4></li>
+<li>在前面我们可以知道TCP是面向连接的协议，具有一定的可靠性。而连接的过程为三次握手，那么下面我们来看一下面向连接过程。</li>
+</ul>
+<p><img src="https://user-gold-cdn.xitu.io/2020/4/27/171bbef84e659c1c?w=838&h=642&f=png&s=155538" alt=""></p>
+<ol>
+<li>客户端最先向服务端发出请求，进行连接，此时SYN=1，表示客户端打算连接服务端。生成一个随机序列seq=x。</li>
+<li>服务器端收到请求之后，要给客户端一个响应，表示已经收到客户端发送的请求，此时ACK=1，表示确认。它的随机序列为seq=y,虽然说客户端发出的请求报文不携带数据，但是会消耗一个序列号，所以此时客户端发回的确认报文为ack=x+1（注意：ACK和ack两者的含义不一样）</li>
+<li>客户端收到请求，发送同意与服务器建立连接。<h5 id="为什么需要传回SYN？"><a href="#为什么需要传回SYN？" class="headerlink" title="为什么需要传回SYN？"></a>为什么需要传回SYN？</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">接收端传回发送端所发送的SYN是为了告诉发送端，我接收到的信息确实就是你所发送的信号了</span><br></pre></td></tr></table></figure>
+<h5 id="已经有SYN为什么还需要ACK？"><a href="#已经有SYN为什么还需要ACK？" class="headerlink" title="已经有SYN为什么还需要ACK？"></a>已经有SYN为什么还需要ACK？</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">传了SYN，证明发送方到接收方的通道没有问题，但是接收方到发送方的通道还需要ACK信号来进行验证</span><br></pre></td></tr></table></figure>
+<h5 id="为什么进行三次握手而不是两次？"><a href="#为什么进行三次握手而不是两次？" class="headerlink" title="为什么进行三次握手而不是两次？"></a>为什么进行三次握手而不是两次？</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">官方解释：“已失效的连接请求报文段”的产生在这样一种情况下：client发出的第一个连接请求报文段并没有丢失，而是在某个网络结点长时间的滞留了，以致延误到连接释放以后的某个时间才到达server。本来这是一个早已失效的报文段。但server收到此失效的连接请求报文段后，就误认为是client再次发出的一个新的连接请求。于是就向client发出确认报文段，同意建立连接。假设不采用“三次握手”，那么只要server发出确认，新的连接就建立了。由于现在client并没有发出建立连接的请求，因此不会理睬server的确认，也不会向server发送数据。但server却以为新的运输连接已经建立，并一直等待client发来数据。这样，server的很多资源就白白浪费掉了。采用“三次握手”的办法可以防止上述现象发生。例如刚才那种情况，client不会向server的确认发出确认。server由于收不到确认，就知道client并没有要求建立连接。”</span><br></pre></td></tr></table></figure></li>
+</ol>
+<ul>
+<li>通俗的讲，就是如果进行两次连接，由于第一次发送的请求可能在网络中滞留，服务端经过一段时间之后没有收到，无法发送确认请求，这个时候，客户端再次发送请求，双方建立了连接进行数据的传输，传输完成并且关闭连接。而后来第一次发送滞留在网络的请求，到达了服务器端，如果是两次连接，那么服务器端会认为客户端再次向它请求数据，然后服务器发送请求确认，彼此建立连接，但是这个时候，客户端实际上并没有发起请求，那么双方就会处于一个连接的状态，白白浪费资源。<h4 id="四次挥手"><a href="#四次挥手" class="headerlink" title="四次挥手"></a>四次挥手</h4></li>
+</ul>
+<p><img src="https://user-gold-cdn.xitu.io/2020/4/27/171bc03f96832ddd?w=860&h=605&f=png&s=197271" alt=""></p>
+<h5 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h5><ol>
+<li>客户端：发送断开连接请求，告诉服务器数据已经发送完毕。</li>
+<li>服务器端：表示收到断开请求，同意这个请求。</li>
+<li>服务器端：发送断开请求。</li>
+<li>客户端：收到断开请求，发送同意确认。<h6 id="为什么要进行四次挥手？"><a href="#为什么要进行四次挥手？" class="headerlink" title="为什么要进行四次挥手？"></a>为什么要进行四次挥手？</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">当客户端发送断开请求，只是表示客户端已经没有数据要发送了，客户端告诉服务器，它的数据已经全部发送完毕了，但是，这个时候客户端还是可以接受来自服务器的数据(第一次分手)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">当服务器收到断开请求时，表示它已经知道客户端没有数据发送了并发送同意断开连接的请求，但是服务器还是可以发送数据到客户端的（第二次分手）</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">当服务器发送同意断开连接的请求后，这个时候就表示服务器也没有数据要发送了，就会告诉客户端，我也没有数据要发送了（第三次分手）</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">当客户端收到服务器发送请求断开连接后，再去告诉服务端我已经知道你没有数据要发给我了，同意断开连接请求（第四次分手</span><br></pre></td></tr></table></figure>
+<h4 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h4>链接：<a href="https://juejin.im/post/5a7efdba5188257a654cd1bc" target="_blank" rel="noopener">https://juejin.im/post/5a7efdba5188257a654cd1bc</a></li>
+</ol>
+<p>链接：<a href="https://juejin.im/post/5a0444d45188255ea95b66bc" target="_blank" rel="noopener">https://juejin.im/post/5a0444d45188255ea95b66bc</a></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/04/26/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95/" rel="prev" title="数据结构和算法">
+      <i class="fa fa-chevron-left"></i> 数据结构和算法
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#TCP和UDP的区别"><span class="nav-number">1.</span> <span class="nav-text">TCP和UDP的区别</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#七层网络模型"><span class="nav-number">2.</span> <span class="nav-text">七层网络模型</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#TCP"><span class="nav-number">2.1.</span> <span class="nav-text">TCP</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#UDP"><span class="nav-number">2.2.</span> <span class="nav-text">UDP</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#TCP的三次握手"><span class="nav-number">3.</span> <span class="nav-text">TCP的三次握手</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#为什么需要传回SYN？"><span class="nav-number">3.1.</span> <span class="nav-text">为什么需要传回SYN？</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#已经有SYN为什么还需要ACK？"><span class="nav-number">3.2.</span> <span class="nav-text">已经有SYN为什么还需要ACK？</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#为什么进行三次握手而不是两次？"><span class="nav-number">3.3.</span> <span class="nav-text">为什么进行三次握手而不是两次？</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#四次挥手"><span class="nav-number">4.</span> <span class="nav-text">四次挥手</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#过程"><span class="nav-number">4.1.</span> <span class="nav-text">过程</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#为什么要进行四次挥手？"><span class="nav-number">4.1.1.</span> <span class="nav-text">为什么要进行四次挥手？</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#参考文章"><span class="nav-number">5.</span> <span class="nav-text">参考文章</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Yool"
+      src="/images/user.jpg">
+  <p class="site-author-name" itemprop="name">Yool</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">14</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Yool</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+ <div class="theme-info">
+    <div class="powered-by"></div>
+    <span class="post-count">博客全站共15.6k字</span>
+  </div>
+
+<div class="powered-by"> <i class="fa fa-user-md"></i> <span id="busuanzi_container_site_uv"> 本站总访客数:<span id="busuanzi_value_site_uv"></span>&nbsp;&nbsp;| </span> <span id="busuanzi_container_site_pv"> &nbsp;本站总访问量<span id="busuanzi_value_site_pv"></span>次 </span> </div> </div>
+
+<script> var now = new Date(); function createtime() { var grt= new Date("03/12/2019 12:00:00");//此处修改你的建站时间或者网站上线时间 now.setTime(now.getTime()+250); days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days); hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours); if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum); mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;} seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum); snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;} document.getElementById("timeDate").innerHTML = "本站已安全运行 "+dnum+" 天 "; document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒"; } setInterval("createtime()",250); </script>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
